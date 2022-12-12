@@ -1,0 +1,65 @@
+$schema: https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json
+name: whimsy
+scopeName: source.whimsy
+patterns:
+- include: '#all'
+repository:
+  all:
+    patterns:
+    - include: '#comments'
+    - include: '#strings'
+    - include: '#keywords'
+    - include: '#constants'
+    - include: '#names'
+  comments:
+    patterns:
+    - match: //.*
+      name: comment.line.double-slash.whimsy
+  strings:
+    patterns:
+    - begin: "'"
+      end: "'"
+      name: string.quoted.single.whimsy
+      patterns: [include: '#escaped']
+    - begin: '"'
+      end: '"'
+      name: string.quoted.double.whimsy
+      patterns: [include: '#escaped']
+    repository:
+      escaped:
+        match: \\.
+        name: constant.character.escape.whimsy
+  keywords:
+    patterns:
+    - match: \b(?:break|continue|do|elif|else|for|if|in|loop|return)\b
+      name: keyword.control.whimsy
+    - match: /(?:do|for|if|loop)\b
+      name: keyword.control.whimsy
+    - match: \b(?:class|fn)\b
+      name: storage.type.whimsy
+    - match: /(?:class|fn)\b
+      name: storage.type.whimsy
+    - match: \b(?:by)\b
+      name: keyword.other.whimsy
+    - match: (?:,|\.\.=|\.\.|\.|;|::|:=|:|!=|!|==|=|<=|<|>=|>|\+=|\+|-=|-|\*=|\*|/=|/|%=|%)
+      name: keyword.operator.whimsy
+    - match: \b(?:and|or|is)\b
+      name: keyword.operator.whimsy
+  constants:
+    patterns:
+    - match: \b(?:true|false|nil)\b
+      name: constant.language.whimsy
+    - match: '-?0[xX][0-9a-fA-F_]+(?:\.[0-9a-fA-F_]+)?'
+      name: constant.numeric.hex.whimsy
+    - match: '-?0[oO][0-7_]+(?:\.[0-7_]+)?'
+      name: constant.numeric.octal.whimsy
+    - match: '-?0[bB][01_]+(?:\.[01_]+)?'
+      name: constant.numeric.binary.whimsy
+    - match: '-?[0-9][0-9_]*(?:\.[0-9_]+)?'
+      name: constant.numeric.decimal.whimsy
+  names:
+    patterns:
+    - match: \b[a-zA-Z_]\w*(?=\()
+      name: entity.name.function.whimsy
+    - match: \b[a-zA-Z_]\w*\b
+      name: variable.other.whimsy

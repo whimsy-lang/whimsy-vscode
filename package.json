@@ -1,0 +1,32 @@
+{
+    "name": "whimsy",
+    "displayName": "Whimsy",
+    "description": "Whimsy support for VS Code",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.74.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "whimsy",
+            "aliases": ["Whimsy", "whimsy"],
+            "extensions": [".whim"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "whimsy",
+            "scopeName": "source.whimsy",
+            "path": "./syntaxes/whimsy.tmLanguage.json"
+        }]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "npx js-yaml syntaxes/whimsy.tmlanguage.yaml > syntaxes/whimsy.tmLanguage.json"
+    },
+    "devDependencies": {
+        "js-yaml": "^4.1.0"
+    }
+}
