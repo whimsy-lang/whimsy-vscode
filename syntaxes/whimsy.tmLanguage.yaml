@@ -13,7 +13,7 @@ repository:
     - include: '#names'
   comments:
     patterns:
-    - match: //.*
+    - match: '#.*'
       name: comment.line.double-slash.whimsy
   strings:
     patterns:
